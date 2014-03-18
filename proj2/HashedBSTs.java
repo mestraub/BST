@@ -43,11 +43,13 @@ public class HashedBSTs <AnyType>{
 		
 		File textFile = new File(fileName);
 		
-		String str;
-		
+		String str = " ";
+
 		try {
 			// reads in the text file
 			Scanner scanFile = new Scanner(textFile);
+			
+			scanFile.useDelimiter("\\W|[0-9]");
 			
 			while (scanFile.hasNext()){
 				str = scanFile.next();

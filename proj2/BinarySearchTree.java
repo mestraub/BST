@@ -58,7 +58,7 @@ public class BinarySearchTree<AnyType extends Comparable <? super AnyType>> {
 	 * 
 	 */
 	public void printRoot(){
-		System.out.println(root);
+		System.out.println(root.getData());
 	}
 	
 	/**
