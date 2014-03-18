@@ -14,7 +14,7 @@ import java.util.Scanner;
  */
 public class HashedBSTs <AnyType>{
 
-	//private ArrayList<BinarySearchTree> table;
+	private ArrayList<BinarySearchTree> table;
 	
 	/**
 	 * a constructor that will accept the size of the hashed table
@@ -22,6 +22,9 @@ public class HashedBSTs <AnyType>{
 	public HashedBSTs(int size){
 		// create array list called table
 		//table = new ArrayList
+		table = new ArrayList<BinarySearchTree>(size);
+		
+		
 	}
 	
 	/**
@@ -44,7 +47,8 @@ public class HashedBSTs <AnyType>{
 		File textFile = new File(fileName);
 		
 		String str = " ";
-
+		char letter = 'z';
+		
 		try {
 			// reads in the text file
 			Scanner scanFile = new Scanner(textFile);
@@ -53,7 +57,17 @@ public class HashedBSTs <AnyType>{
 			
 			while (scanFile.hasNext()){
 				str = scanFile.next();
-				System.out.println(str);
+
+				if (str.length() > 0){
+					letter = str.charAt(0);
+				//	System.out.println(letter);
+				}
+				
+				switch(letter){
+					case'A':
+					case'a': 
+							break;
+				}
 			}
 			
 			scanFile.close();

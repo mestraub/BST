@@ -41,7 +41,7 @@ public class BinarySearchTree<AnyType extends Comparable <? super AnyType>> {
 		if ( t == null)
 			return new BinaryNode<>(x, null, null);
 		
-		int compareResult = x.compareTo(t.data);
+		int compareResult = x.compareTo(t.Data);
 		
 		if (compareResult < 0)
 			t.left = insert (x, t.left);
@@ -65,7 +65,18 @@ public class BinarySearchTree<AnyType extends Comparable <? super AnyType>> {
 	 * 
 	 */
 	public void printTree(){
-		
+		if (isEmpty())
+				System.out.println("Empty Tree");
+		else
+			printTree(root);
+	}
+	
+	public void printTree(BinaryNode<AnyType> t){
+		if( t != null){
+			printTree(t.left);
+			System.out.println(t.data);
+			printTree(t.right);
+		}
 	}
 	
 	private static class BinaryNode<AnyType>{
