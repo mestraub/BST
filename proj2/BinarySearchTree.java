@@ -37,16 +37,16 @@ public class BinarySearchTree<AnyType extends Comparable <? super AnyType>> {
 		root = insert (x, root);
 	}
 	
-	public BinaryNode<AnyType> (AnyType x, BinaryNode<AnyType> t){
+	public BinaryNode<AnyType> insert(AnyType x, BinaryNode<AnyType> t){
 		if ( t == null)
-			return new BinaryNode<>(x, null, null);
+			return new BinaryNode<AnyType>(x, null, null);
 		
-		int compareResult = x.compareTo(t.Data);
+		int compareResult = x.compareTo(t.getData());
 		
 		if (compareResult < 0)
-			t.left = insert (x, t.left);
+			insert (x, t.getLeft());
 		else if (compareResult > 0)
-			t.right = insert (x, t.right);
+			insert (x, t.getRight());
 		else
 			; // duplicate find out what to do
 		
@@ -84,25 +84,34 @@ public class BinarySearchTree<AnyType extends Comparable <? super AnyType>> {
 		AnyType data; // the data in the node
 		BinaryNode<AnyType> left; // left child
 		BinaryNode<AnyType> right; // right child
+		int frequency;
 		
 		/**
 		 * 
 		 */
-		BinaryNode(AnyType theNode){
+		public BinaryNode(AnyType theNode){
 			this(theNode,null,null);
 		}
 		
 		/**
 		 * 
 		 */
-		BinaryNode(AnyType theNode, BinaryNode<AnyType> leftNode, BinaryNode<AnyType> rightNode){
+		public BinaryNode(AnyType theNode, BinaryNode<AnyType> leftNode, BinaryNode<AnyType> rightNode){
 			data = theNode;
 			left = leftNode;
 			right = rightNode;
 		}
 		
-		AnyType getData(){
+		public AnyType getData(){
 			return data;
+		}
+		
+		public BinaryNode<AnyType> getLeft(){
+			return left;
+		}
+		
+		public BinaryNode<AnyType> getRight(){
+			return right;
 		}
 		
 	}// end binarynode class
