@@ -15,6 +15,7 @@ import java.util.Scanner;
 public class HashedBSTs <AnyType>{
 
 	private ArrayList<BinarySearchTree<String>> table;
+	private BinarySearchTree<String> tree;
 	
 	/**
 	 * a constructor that will accept the size of the hashed table
@@ -23,6 +24,12 @@ public class HashedBSTs <AnyType>{
 		// create array list called table
 		//table = new ArrayList
 		table = new ArrayList<BinarySearchTree<String>>(size);
+		tree = new BinarySearchTree<String>();
+		
+		for(int i = 0; i < size; i++){
+			table.add(i,tree);
+		}
+		
 		
 		
 	}
@@ -49,7 +56,10 @@ public class HashedBSTs <AnyType>{
 		
 		String str = " ";
 		char letter = 'z';
-		
+		//BinarySearchTree<String> treeA = new BinarySearchTree<String>();					
+		//table.add(0, treeA);
+		//BinarySearchTree<String> treeB = new BinarySearchTree<String>();
+		//table.add(1, treeB);
 		try {
 			// reads in the text file
 			Scanner scanFile = new Scanner(textFile);
@@ -67,20 +77,20 @@ public class HashedBSTs <AnyType>{
 				switch(letter){
 					case'A':
 					case'a': 
-							BinarySearchTree<String> treeA = new BinarySearchTree<String>();					
-							table.add(0, treeA);
-							treeA.insert(str);
-							treeA.printTree();
+							table.get(0).insert(str);
+							//treeA.insert(str);							
 							break;
-					/**case 'B':
+					case 'B':
 					case 'b': 
-							BinarySearchTree<String> treeB = new BinarySearchTree<String>();
-							table.add(1, treeB);
-							treeB.insert(str);
-							treeB.printTree();
-							break; */
+							table.get(1).insert(str);
+							//treeB.insert(str);				
+							break;
 				}
 			}
+			
+			
+			//treeA.printTree();
+			//treeB.printTree();
 			
 			scanFile.close();
 			
@@ -90,6 +100,9 @@ public class HashedBSTs <AnyType>{
 			System.out.println("File not found.");
 			e.printStackTrace();
 		}// end catch
+		
+		table.get(0).printTree();
+		//table.get(1).printTree();
 	}
 	
 	/**
@@ -113,3 +126,41 @@ public class HashedBSTs <AnyType>{
 	 */
 	
 }
+
+
+/**
+
+A
+Activate
+An
+Another
+Answer
+Arbitrary
+Asked
+Asterisks
+a
+about
+above
+and
+answer
+any
+apply
+arbitrary
+are
+as
+assets
+assumed
+at
+backticks
+backwards
+bar
+be
+been
+below
+blockquotes
+bottom
+brief
+bug
+built
+but
+**/

@@ -44,9 +44,9 @@ public class BinarySearchTree<AnyType extends Comparable <? super AnyType>> {
 		int compareResult = x.compareTo(t.getData());
 		
 		if (compareResult < 0)
-			insert (x, t.getLeft());
+			t.left = insert(x, t.getLeft());
 		else if (compareResult > 0)
-			insert (x, t.getRight());
+			t.right = insert(x,t.getRight());
 		else
 			; // duplicate find out what to do
 		
@@ -113,6 +113,16 @@ public class BinarySearchTree<AnyType extends Comparable <? super AnyType>> {
 		public BinaryNode<AnyType> getRight(){
 			return right;
 		}
+		
+	    public void setLeft(AnyType data)
+	    {
+	        left.data = data;
+	    }
+
+	    public void setRight(AnyType data)
+	    {
+	        right.data = data;
+	    }
 		
 	}// end binarynode class
 	
