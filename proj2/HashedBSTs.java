@@ -1,5 +1,6 @@
 /**
- * 
+ * not building tree correctly
+ * httpexamplecom should be together and not seperate
  */
 package proj2;
 
@@ -36,6 +37,17 @@ public class HashedBSTs <AnyType extends Comparable<? super AnyType>>{
 	 * should run in O(n) time
 	 */
 	public void printHashCountsResults(){
+		// loop through the entire array list
+		for (int index = 0; index < table.size(); index++)
+		{
+			if (table.get(index).isEmpty()){
+				System.out.println("This tree has no nodes");
+			}else{
+				System.out.print("This tree starts with Node ");
+				table.get(index).printRoot();
+				//System.out.print(" and has GET TREE SIZE HERE nodes.\n");
+			}
+		}
 		
 	}
 	
@@ -60,11 +72,12 @@ public class HashedBSTs <AnyType extends Comparable<? super AnyType>>{
 			Scanner scanFile = new Scanner(textFile);
 			
 			//uses a regular expression to deliminate the text file
-			scanFile.useDelimiter("\\W|[0-9]");
+			//scanFile.useDelimiter("\\W|[0-9]");
 			
 			while (scanFile.hasNext()){
 				str = scanFile.next();
-
+				str = str.replaceAll("\\W|[0-9]", "");
+				
 				if (str.length() > 0){
 					letter = str.charAt(0);
 				}
@@ -96,6 +109,8 @@ public class HashedBSTs <AnyType extends Comparable<? super AnyType>>{
 			table.get(i).printTree();
 		}
 		
+		printHashCountsResults();
+		
 	}
 	
 	/**
@@ -119,44 +134,6 @@ public class HashedBSTs <AnyType extends Comparable<? super AnyType>>{
 	 */
 	
 }
-
-
-/**
-
-A
-Activate
-An
-Another
-Answer
-Arbitrary
-Asked
-Asterisks
-a
-about
-above
-and
-answer
-any
-apply
-arbitrary
-are
-as
-assets
-assumed
-at
-backticks
-backwards
-bar
-be
-been
-below
-blockquotes
-bottom
-brief
-bug
-built
-but
-**/
 
 /**
 switch(letter){

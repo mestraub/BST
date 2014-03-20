@@ -84,7 +84,7 @@ public class BinarySearchTree<AnyType extends Comparable <? super AnyType>> {
 		AnyType data; // the data in the node
 		BinaryNode<AnyType> left; // left child
 		BinaryNode<AnyType> right; // right child
-		int frequency;
+		//int frequency;
 		
 		/**
 		 * 
