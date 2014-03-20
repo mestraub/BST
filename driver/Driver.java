@@ -10,7 +10,7 @@ public class Driver {
 		
 		test1.fileReader("input1.txt");
 		
-	//	test1.printHashCountResults();
+		test1.printHashCountResults();
 
 		// retrieve all T's (index 19)
 		//BinarySearchTree <Node> sample = test1.retreiveHashedBSTat(19);
