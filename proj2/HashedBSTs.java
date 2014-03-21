@@ -1,12 +1,10 @@
 /**
- * not building tree correctly
- * httpexamplecom should be together and not seperate
- * 
- * 
- * 3.20.14-fixed teh building of the trees, put stuff in if statement
- * made it so the arraylist does a Node
- * 
- * make nodes in the BST class and compare when inserting
+ *TO DO:
+ *
+ *1. figure out frequency
+ *2. finish find all
+ *3. finish common ancestor
+ *4. document the shit out of this thing
  */
 package proj2;
 
@@ -16,65 +14,65 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * @author Megan
+ * This class uses a creates and uses a hashed generic Binary Search Tree to hold
+ * generic objects that are manipulated.
+ * 
+ * @version 03/21/14
+ * @author Megan Straub <mstraub1@umbc.edu>
+ * CMSC 341 - Spring 2014 - Project 2
+ * Section 4
  *
  */
 public class HashedBSTs <AnyType extends Comparable<? super AnyType>>{
-
-	private ArrayList<BinarySearchTree<Node>> table;
-	private BinarySearchTree<Node> tree;
-	
-	//private ArrayList<BinarySearchTree<AnyType>> table;
-	//private BinarySearchTree<AnyType> tree;
 	
 	/**
-	 * a constructor that will accept the size of the hashed table
+	 * The ArrayList that holds the Binary Search Tree objects.
+	 */
+	private ArrayList<BinarySearchTree<Node>> table;
+	
+	/**
+	 * A constructor method for the HashedBSTs class.
+	 * 
+	 * @param size the size of the index
 	 */
 	public HashedBSTs(int size){
-		// create array list called table
-		//table = new ArrayList
-		//table = new ArrayList<BinarySearchTree<AnyType>>(size);	
+		
 		table = new ArrayList<BinarySearchTree<Node>>(size);
+		
 		for(int i = 0; i < size; i++){
-			//tree = new BinarySearchTree<AnyType>();
-			tree = new BinarySearchTree<Node>();
+			BinarySearchTree<Node> tree = new BinarySearchTree<Node>();
 			table.add(i,tree);
 		}			
 	}//end HashedBSTs()
 	
 	/**
-	 * this is a grading and debugging tool
-	 * should run in O(n) time
+	 * This prints the results of the hashed binary search tree.
 	 */
 	public void printHashCountResults(){
-		// loop through the entire array list
-		
-		/*
-		 * a test printing schema for the output
-		 */
-		for (int index = 0; index < table.size(); index++)
-		{
+
+		for (int index = 0; index < table.size(); index++){
+			
 			if (table.get(index).isEmpty()){
-				System.out.println("This tree has no nodes");
-			}else{
-				System.out.print("This tree starts with ");
-				table.get(index).printRoot();
 				
-				//IMPORTANT: find out how to get tree size
-				//System.out.print(" and has GET TREE SIZE HERE nodes.\n");
-			}
+				System.out.print("This tree starts with ");
+				System.out.println("and has " + table.get(index).count() + " nodes");
+				
+			}else{
+				
+				System.out.print("This tree starts with ");
+				table.get(index).printRoot();	
+				System.out.println("and has " + table.get(index).count() + " nodes");
+			}			
 		}	
-	}//end printHashCountResults()
+	}//end printHashCountResults()	
 	
 	/**
-	 * will open a file, filter it to the distinct words, remove ALL punctuation, and numbers
-	 * then place those words into the appropriate BST in the arraylist table
+	 * This reads the file, removes any unwanted characters from the file, and inserts
+	 * the Nodes into the specific binary search tree.
 	 * 
-	 * should run in O(n) time
+	 * @param fileName the name of the file to be manipulated
 	 */
-	
-	public void fileReader(String fileName){
-		
+	public void fileReader(String fileName){	
 		
 		File textFile = new File(fileName);
 		
@@ -84,11 +82,7 @@ public class HashedBSTs <AnyType extends Comparable<? super AnyType>>{
 		Node n; 
 		
 		try {
-			// reads in the text file
-			Scanner scanFile = new Scanner(textFile);
-			
-			//uses a regular expression to deliminate the text file
-			//scanFile.useDelimiter("\\W|[0-9]");
+			Scanner scanFile = new Scanner(textFile); // reads the input file
 			
 			while (scanFile.hasNext()){
 				str = scanFile.next();
@@ -108,17 +102,15 @@ public class HashedBSTs <AnyType extends Comparable<? super AnyType>>{
 					 * 90 minus 65 is 25 the Z letter
 					 * 65 minus 65 is 0 the A letter
 					 */
-					char letterUpper = Character.toUpperCase(letter);
-					
+					char letterUpper = Character.toUpperCase(letter);					
 					
 					if(letterUpper - 65 >= 0 && letterUpper - 65 <= 25){
+						
 						index = letterUpper - 65;
-						//table.get(index).insert((AnyType)str);
 						n = new Node(str);
 						table.get(index).insert(n);
 					}	
-				}
-					
+				}				
 			}
 
 			scanFile.close();
@@ -143,18 +135,37 @@ public class HashedBSTs <AnyType extends Comparable<? super AnyType>>{
 	 * should run O(lgn) time
 	 */
 	
+	/**
+	 * 
+	 */
 	public void findAll(BinarySearchTree<Node> retrieved, Node sample){
+		/*
+		 * collect all codes that start with the letters in the sample Node and print that list of nodes
+		 * will run at O(logn) time
+		 */
 		
-	}
-	
-	
+		System.out.println("Finding all words that START with '" + sample.getWord() + "'");
+		// if all words are greater than the sample they are a partial match
+		// must traverse the entire tree given to find matches
+		// use compare to function?
+		
+		
+		
+	}//end findAll()
 	
 	/**
-	 * letters 'A' and 'a' will be at index 0
-	 * letters 'B' and 'b' will be at index 1
-	 * there will be 26 spots in the table
-	 * 
-	 * use an array list to hold the BST called table, the size will be 26
+	 * allows you to get a specific tree at a certain index in the array list
+	 * @param index
+	 * @return
 	 */
-	
-}
+	public BinarySearchTree<Node> retreiveHashedBSTat(int index){
+		return table.get(index);
+	}//end retreiveHashedBSTat()
+}//end HashedBSTs class
+
+/**
+ * will open a file, filter it to the distinct words, remove ALL punctuation, and numbers
+ * then place those words into the appropriate BST in the arraylist table
+ * 
+ * should run in O(n) time
+ */
