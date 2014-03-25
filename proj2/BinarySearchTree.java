@@ -168,9 +168,9 @@ public class BinarySearchTree<AnyType extends Comparable <? super AnyType>> {
 	/**
 	 * An internal method that finds a node within a binary search tree.
 	 * 
-	 * @param x
-	 * @param t
-	 * @return 
+	 * @param x the node being found
+	 * @param t the root of a subtree to search
+	 * @return the actual node that was found
 	 */
 	private AnyType findNode(AnyType x, BinaryNode<AnyType> t){
 		if (t ==  null)

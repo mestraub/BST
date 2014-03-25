@@ -84,7 +84,7 @@ public class HashedBSTs <AnyType extends Comparable<? super AnyType>>{
 				if (str.length() > 0){
 					letter = str.charAt(0);
 					
-					/**
+					/*
 					 * 90 and 65 are the ASCII characters of the upper case letters
 					 * 90 minus 65 is 25 the letter Z
 					 * 65 minus 65 is 0 the letter A
