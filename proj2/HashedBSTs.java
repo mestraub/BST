@@ -1,11 +1,3 @@
-/**
- *TO DO:
- *
- *1. figure out frequency
- *2. finish find all
- *3. finish common ancestor
- *4. document the shit out of this thing
- */
 package proj2;
 
 import java.io.File;
@@ -43,7 +35,7 @@ public class HashedBSTs <AnyType extends Comparable<? super AnyType>>{
 			BinarySearchTree<Node> tree = new BinarySearchTree<Node>();
 			table.add(i,tree);
 		}			
-	}//end HashedBSTs()
+	}
 	
 	/**
 	 * This prints the results of the hashed binary search tree.
@@ -64,7 +56,7 @@ public class HashedBSTs <AnyType extends Comparable<? super AnyType>>{
 				System.out.println("and has " + table.get(index).count() + " nodes");
 			}			
 		}	
-	}//end printHashCountResults()	
+	}
 	
 	/**
 	 * This reads the file, removes any unwanted characters from the file, and inserts
@@ -86,25 +78,20 @@ public class HashedBSTs <AnyType extends Comparable<? super AnyType>>{
 			
 			while (scanFile.hasNext()){
 				str = scanFile.next();
-				/*
-				 * this deliminates the words and replace the parts removed with no space. 
-				 * i did this because when printing the root of the tree i was getting the wrong root.
-				 * it also appears to fix our node problem with how many are in the tree (only checked A though)
-				 * 
-				 */
-				str = str.replaceAll("\\W|[0-9]", "");
+	
+				str = str.replaceAll("\\W|[0-9]", "");	//removes any unwanted characters
 				
 				if (str.length() > 0){
 					letter = str.charAt(0);
 					
 					/**
 					 * 90 and 65 are the ASCII characters of the upper case letters
-					 * 90 minus 65 is 25 the Z letter
-					 * 65 minus 65 is 0 the A letter
+					 * 90 minus 65 is 25 the letter Z
+					 * 65 minus 65 is 0 the letter A
 					 */
 					char letterUpper = Character.toUpperCase(letter);					
 					
-					if(letterUpper - 65 >= 0 && letterUpper - 65 <= 25){
+					if(letterUpper - 65 >= 0 && letterUpper - 65 <= 25){	
 						
 						index = letterUpper - 65;
 						n = new Node(str);
@@ -112,60 +99,35 @@ public class HashedBSTs <AnyType extends Comparable<? super AnyType>>{
 					}	
 				}				
 			}
-
-			scanFile.close();
-			
+			scanFile.close();		
 		}// end try
-		catch (FileNotFoundException e){	
-			
+		catch (FileNotFoundException e){			
 			System.out.println("File not found.");
 			e.printStackTrace();
 		}// end catch
-		/*
-		for (int i = 0; i < 26; i++){
-			table.get(i).printTree();
-		}
-		*/
-		//printHashCountsResults();		
-	}//end fileReader()
+	}
 	
 	/**
-	 * will collect all codes that START with the letters in the sample Node and print that list of nodes
+	 * This method finds all nodes in a tree that begin with the sample node parameter.
 	 * 
-	 * should run O(lgn) time
-	 */
-	
-	/**
-	 * 
+	 * @param retrieved the binary search tree being searched
+	 * @param sample the node that is to be matched with the other nodes in the binary search tree
 	 */
 	public void findAll(BinarySearchTree<Node> retrieved, Node sample){
-		/*
-		 * collect all codes that start with the letters in the sample Node and print that list of nodes
-		 * will run at O(logn) time
-		 */
 		
-		System.out.println("Finding all words that START with '" + sample.getWord() + "'");
-		// if all words are greater than the sample they are a partial match
-		// must traverse the entire tree given to find matches
-		// use compare to function?
-		
-		
-		
-	}//end findAll()
+		System.out.println("Finding all words that START WITH '" + sample.getWord() + "'");
+
+		retrieved.findAll(sample);
+	}
 	
 	/**
-	 * allows you to get a specific tree at a certain index in the array list
+	 * This methods retrieves a specific tree from a certain index in the
+	 * array list.
+	 *
 	 * @param index
-	 * @return
+	 * @return the tree at the specific index in the array list
 	 */
-	public BinarySearchTree<Node> retreiveHashedBSTat(int index){
+	public BinarySearchTree<Node> retrieveHashedBSTat(int index){
 		return table.get(index);
-	}//end retreiveHashedBSTat()
-}//end HashedBSTs class
-
-/**
- * will open a file, filter it to the distinct words, remove ALL punctuation, and numbers
- * then place those words into the appropriate BST in the arraylist table
- * 
- * should run in O(n) time
- */
+	}
+}

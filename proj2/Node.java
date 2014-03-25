@@ -2,8 +2,6 @@ package proj2;
 
 import java.util.ArrayList;
 
-//import proj2.BinarySearchTree.BinaryNode;
-
 public class Node implements Comparable <Object> {
 
 	private String word;
@@ -39,7 +37,7 @@ public class Node implements Comparable <Object> {
 	public boolean startsWith(Object x) {
 		
 		Node that = (Node) x;
-		return that.getWord().startsWith(this.getWord());
+		return this.getWord().startsWith(that.getWord());
 	}
 	
 }

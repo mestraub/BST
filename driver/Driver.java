@@ -13,14 +13,14 @@ public class Driver {
 		test1.printHashCountResults();
 
 		// retrieve all T's (index 19)
-		BinarySearchTree <Node> sample = test1.retreiveHashedBSTat(19);
+		BinarySearchTree <Node> sample = test1.retrieveHashedBSTat(19);
 		
 		sample.printTree();
 		
 		// answer SHOULD be "tag" with input1.txt
 		sample.findCommonAncestor(new Node("This"), new Node("than"));
 		
-	//	test1.findAll(sample, new Node("the"));
+		test1.findAll(sample, new Node("the"));
 		
 	}
 
